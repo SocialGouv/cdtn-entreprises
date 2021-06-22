@@ -2,6 +2,7 @@ import Koa from "koa";
 import cors from "@koa/cors";
 
 import { router } from "./routes";
+import { ELASTICSEARCH_URL } from "./elastic";
 
 export const app = new Koa();
 
@@ -13,4 +14,4 @@ app.use(router.routes());
 app.listen(port);
 
 console.log(`API started on port ${port}`);
-console.log("ES host:", process.env.ELASTICSEARCH_URL);
+console.log("ES host:", ELASTICSEARCH_URL);

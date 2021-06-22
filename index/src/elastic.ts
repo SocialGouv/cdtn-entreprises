@@ -17,7 +17,7 @@ const esClientConfig: ClientOptions = {
   node: ELASTICSEARCH_URL,
 };
 
-const esClient = new Client(esClientConfig);
+export const esClient = new Client(esClientConfig);
 
 const analysis = {
   filter: {
@@ -132,55 +132,6 @@ export const createIndex = async () => {
   return newIndexName;
 };
 
-const bulkInsert = async (enterprises: Enterprise[], indexName: string) => {
-  // async function bulkIndexDocuments({ client, indexName, documents }) {
-  try {
-    const resp = await esClient.bulk({
-      refresh: "wait_for",
-      body: enterprises.reduce(
-        (state, enterprise) =>
-          state.concat(
-            {
-              index: {
-                _index: indexName,
-                _id: enterprise.siret,
-              },
-            } as any,
-            mapEnterprise(enterprise) as any
-          ),
-        []
-      ),
-      index: indexName,
-    });
-    if (resp.body.errors) {
-      const errorDocs = resp.body.items.filter(
-        (item: any) => item.index.status != 201
-      );
-      console.error(`Errors during indexation : ${JSON.stringify(errorDocs)}`);
-    }
-    console.info(`Index ${enterprises.length} documents.`);
-    return resp;
-  } catch (error) {
-    console.error("index documents", error.body.error);
-  }
-};
-
-export const add = async (enterprises: Enterprise[], indexName: string) => {
-  const batches = [];
-  let i = 0;
-
-  const batchSize = 500;
-  while (i < enterprises.length) {
-    batches.push(enterprises.slice(i, (i += batchSize)));
-  }
-
-  console.log(`${batches.length} batches`);
-
-  return pAll(
-    batches.map((batch) => () => bulkInsert(batch, indexName)),
-    { concurrency: 5 }
-  );
-};
 
 export const getDocsCount = async (indexName: string): Promise<number> => {
   const stats = await esClient.indices.stats({ index: indexName });

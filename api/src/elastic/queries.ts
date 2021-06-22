@@ -84,7 +84,6 @@ export const mapHit = ({
       },
       new Map()
     );
-
   // take first by priority
   const simpleLabel = [
     denominationUniteLegale,
@@ -114,12 +113,12 @@ export const mapHit = ({
 const rank_feature = { boost: 10, field: "trancheEffectifsUniteLegale" };
 
 const collapse = (withAllConventions: boolean) => ({
-  field: "siren",
+  field: withAllConventions ? "siren" : "siret",
   inner_hits: {
     _source: false,
     docvalue_fields: ["idcc", "convention"],
     name: "matchingEtablissements",
-    size: withAllConventions ? 10000 : 1,
+    size: 10000,
   },
 });
 
@@ -144,8 +143,9 @@ const addressFilter = (address: string | undefined) =>
 export type SearchArgs = {
   query: string;
   address?: string | undefined;
-  // return convention of every etablissements associated to the main company
-  addAllConventions?: boolean;
+  // return agreements of every etablissements associated to the main company
+  // or return all etablissement with all agreements
+  collapseSiren?: boolean;
   // only search for etablissements with convention attached
   onlyWithConvention?: boolean;
   limit?: number | undefined;
@@ -154,11 +154,11 @@ export type SearchArgs = {
 export const entrepriseSearchBody = ({
   query,
   address,
-  addAllConventions = true,
+  collapseSiren = true,
   onlyWithConvention = true,
   limit = defaultLimit,
 }: SearchArgs) => ({
-  collapse: collapse(addAllConventions),
+  collapse: collapse(collapseSiren),
   highlight: {
     fields: {
       naming: { post_tags: [post], pre_tags: [pre] },

@@ -5,14 +5,14 @@ import type { SearchArgs } from "../elastic/queries";
 export const search = async ({
   query,
   address,
-  addAllConventions,
+  collapseSiren,
   onlyWithConvention,
   limit,
 }: SearchArgs) => {
   const body = entrepriseSearchBody({
     query,
     address,
-    addAllConventions,
+    collapseSiren,
     onlyWithConvention,
     limit,
   });
@@ -34,7 +34,7 @@ export const search = async ({
 export const searchEntreprise = async (siren: string) => {
   const body = entrepriseSearchBody({
     query: siren,
-    addAllConventions: true,
+    collapseSiren: true,
     onlyWithConvention: false,
     limit: 1,
   });
@@ -56,7 +56,7 @@ export const searchEntreprise = async (siren: string) => {
 export const searchEtablissement = async (siret: string) => {
   const body = entrepriseSearchBody({
     query: siret,
-    addAllConventions: false,
+    collapseSiren: false,
     onlyWithConvention: false,
     limit: 1,
   });

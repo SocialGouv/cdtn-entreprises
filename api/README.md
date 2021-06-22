@@ -34,6 +34,10 @@ Returns json data about companies matching search parameters
 
   `l=[integer]` result limit
 
+  `collapseSiren=[true|false]` return all conventions for a matching enterprise
+
+  `onlyWithConvention=[true|false]` only return enterprises with an associated agreement
+
 - **Sample Call:**
 
   ```sh
