@@ -19,7 +19,7 @@
     "@socialgouv/codes-naf": "^1.0.5",
     "@socialgouv/kali-data": "^2.61.0",
     "fast-csv": "^4.3.6",
-    "p-all": "^3.0.0",
+    "p-all": "^4.0.0",
     "ts-node": "^9.1.1"
   },
   "devDependencies": {
