@@ -31,7 +31,7 @@ def read_siren(stock_unite_legale_file):
     categorieEntreprise = "categorieEntreprise"
     activitePrincipaleUniteLegale = "activitePrincipaleUniteLegale"
 
-    selection = ["siren", "sigleUniteLegale", "nomUniteLegale", "nomUsageUniteLegale",
+    selection = ["siren", "prenom1UniteLegale", "sigleUniteLegale", "nomUniteLegale", "nomUsageUniteLegale",
                  'denominationUniteLegale', "denominationUsuelle1UniteLegale", "denominationUsuelle2UniteLegale",
                  "denominationUsuelle3UniteLegale", activitePrincipaleUniteLegale,
                  trancheEffectifsUniteLegale, categorieJuridiqueUniteLegale,

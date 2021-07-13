@@ -41,6 +41,7 @@ export const mapHit = ({
   _source: {
     siren,
     denominationUniteLegale,
+    prenom1UniteLegale,
     nomUniteLegale,
     nomUsageUniteLegale,
     denominationUsuelle1UniteLegale,
@@ -91,6 +92,7 @@ export const mapHit = ({
     denominationUsuelle1UniteLegale,
     denominationUsuelle2UniteLegale,
     denominationUsuelle3UniteLegale,
+    prenom1UniteLegale,
     nomUniteLegale,
     nomUsageUniteLegale,
   ].find((l) => l);
@@ -148,6 +150,7 @@ export type SearchArgs = {
   addAllConventions?: boolean;
   // only search for etablissements with convention attached
   onlyWithConvention?: boolean;
+  orderByEffectif?: boolean;
   limit?: number | undefined;
 };
 
@@ -157,6 +160,7 @@ export const entrepriseSearchBody = ({
   addAllConventions = true,
   onlyWithConvention = true,
   limit = defaultLimit,
+  orderByEffectif = false,
 }: SearchArgs) => ({
   collapse: collapse(addAllConventions),
   highlight: {
@@ -189,12 +193,11 @@ export const entrepriseSearchBody = ({
           },
         },
       ],
-      should: [
-        { rank_feature },
-        // rank by siret with minimum boosting in order to ensure results appear in the same order
-        // useful to always have the same first etablissement when no address passed
-        { rank_feature: { field: "siretRank", boost: 0.1 } },
-      ],
+      // should: [
+      // rank by siret with minimum boosting in order to ensure results appear in the same order
+      // useful to always have the same first etablissement when no address passed
+      // { rank_feature: { field: "siretRank", boost: 0.1 } },
+      // ],
     },
   },
   size: limit ? limit : defaultLimit,
