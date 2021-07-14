@@ -71,10 +71,10 @@
   resolved "https://registry.yarnpkg.com/@socialgouv/codes-naf/-/codes-naf-1.0.5.tgz#fa64c00b6299d0d41e1e88a4422ca72cb688e08c"
   integrity sha512-unWkbh6qcG/9B+Oa2LsES6+xFYRK+KMyfa+NNszaEE7JYxSAibRnICTEkRUjriufrRXREV0fiB3MR0ytk7uAMA==
 
-"@socialgouv/kali-data@^2.61.0":
-  version "2.61.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kali-data/-/kali-data-2.61.0.tgz#8e83bca951c99a0cf000c5e8298d309b378d6bcc"
-  integrity sha512-UF52CdyoxcZYT6Xi1wb8+IUIi1Aw2qRkreddTA+SvYNnLbhyvlmpoEKNGMTvesGugdkZTu9y2egJLOJduAcW3w==
+"@socialgouv/kali-data@^2.107.0":
+  version "2.107.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/kali-data/-/kali-data-2.107.0.tgz#185e7a294885c5d6889618fb3e805af72f2708a9"
+  integrity sha512-afQtiaBn4SQHrns30na2y+8SbkhLYhwzCWVUUTb0R2Q2J2a6GHbFGIrhJ23Uq6CNq3pLhYHEP8DALIh1RyCSGw==
   dependencies:
     unist-util-find "1.0.2"
     unist-util-flat-filter "1.0.0"
